@@ -91,10 +91,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>..\include\hk;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>..\lib\hk\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>HCNetSDK.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -151,7 +154,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="HikDevice.cpp" />
+    <ClCompile Include="HikDeviceRegisterManager.cpp" />
+    <ClCompile Include="HikPTZController.cpp" />
+    <ClCompile Include="HikRealtimePlayController.cpp" />
+    <ClCompile Include="HikReplayController.cpp" />
+    <ClCompile Include="HikVideoDownloadController.cpp" />
+    <ClCompile Include="PsAnalyzer.cpp" />
     <ClCompile Include="SMS.StreamingMediaServer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="HikDevice.h" />
+    <ClInclude Include="HikDeviceRegisterManager.h" />
+    <ClInclude Include="HikPTZController.h" />
+    <ClInclude Include="HikRealtimePlayController.h" />
+    <ClInclude Include="HikReplayController.h" />
+    <ClInclude Include="HikVideoDownloadController.h" />
+    <ClInclude Include="PsAnalyzer.h" />
+    <ClInclude Include="PublicDef.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

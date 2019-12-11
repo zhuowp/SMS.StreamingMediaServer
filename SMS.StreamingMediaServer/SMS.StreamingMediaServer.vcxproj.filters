@@ -13,10 +13,63 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="头文件\Hik">
+      <UniqueIdentifier>{b04ae062-4307-4664-ad9f-58b5d6dcec53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Hik">
+      <UniqueIdentifier>{277dcac5-2383-46dd-b2e7-f6a998ca0df9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SMS.StreamingMediaServer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="PsAnalyzer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="HikDevice.cpp">
+      <Filter>源文件\Hik</Filter>
+    </ClCompile>
+    <ClCompile Include="HikDeviceRegisterManager.cpp">
+      <Filter>源文件\Hik</Filter>
+    </ClCompile>
+    <ClCompile Include="HikPTZController.cpp">
+      <Filter>源文件\Hik</Filter>
+    </ClCompile>
+    <ClCompile Include="HikRealtimePlayController.cpp">
+      <Filter>源文件\Hik</Filter>
+    </ClCompile>
+    <ClCompile Include="HikReplayController.cpp">
+      <Filter>源文件\Hik</Filter>
+    </ClCompile>
+    <ClCompile Include="HikVideoDownloadController.cpp">
+      <Filter>源文件\Hik</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PublicDef.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="PsAnalyzer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="HikDevice.h">
+      <Filter>头文件\Hik</Filter>
+    </ClInclude>
+    <ClInclude Include="HikDeviceRegisterManager.h">
+      <Filter>头文件\Hik</Filter>
+    </ClInclude>
+    <ClInclude Include="HikRealtimePlayController.h">
+      <Filter>头文件\Hik</Filter>
+    </ClInclude>
+    <ClInclude Include="HikPTZController.h">
+      <Filter>头文件\Hik</Filter>
+    </ClInclude>
+    <ClInclude Include="HikReplayController.h">
+      <Filter>头文件\Hik</Filter>
+    </ClInclude>
+    <ClInclude Include="HikVideoDownloadController.h">
+      <Filter>头文件\Hik</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
