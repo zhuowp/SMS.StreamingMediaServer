@@ -2,8 +2,25 @@
 //
 
 #include <iostream>
+#include "HikDeviceRegisterManager.h"
 
 int main()
 {
+	std::cout << "Hello world!\n";
+	HikDeviceRegisterManager hikDevRegisterManager;
 
+	while (true)
+	{
+		int input = getchar();
+
+		if (input == 'q')
+		{
+			break;
+		}
+
+		if (input == 'r')
+		{
+			hikDevRegisterManager.DeviceRegister("192.168.28.130", 8000, "admin", "admin888");
+		}
+	}
 }
