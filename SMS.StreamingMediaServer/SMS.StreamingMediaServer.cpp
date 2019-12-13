@@ -22,5 +22,10 @@ int main()
 		{
 			hikDevRegisterManager.DeviceRegister("192.168.28.130", 8000, "admin", "admin888");
 		}
+
+		if (input == 'u')
+		{
+			hikDevRegisterManager.DeviceUnregister("192.168.28.130-8000");
+		}
 	}
 }

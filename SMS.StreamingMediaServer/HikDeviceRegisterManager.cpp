@@ -26,10 +26,10 @@ LONG HikDeviceRegisterManager::DeviceRegister(string ipAddress, int port, string
 	}
 	else//已登录，则增加登录次数
 	{
-		SMS_DEV_REGISTER_STATUS registerStatus = iter->second;
+		SMS_DEV_REGISTER_STATUS* registerStatus = &(iter->second);
 		if (DeviceNonfirstRegister(registerStatus, userName, password))
 		{
-			return registerStatus.loginId;
+			return (*registerStatus).loginId;
 		}
 		else
 		{
@@ -38,16 +38,16 @@ LONG HikDeviceRegisterManager::DeviceRegister(string ipAddress, int port, string
 	}
 }
 
-BOOL HikDeviceRegisterManager::DeviceNonfirstRegister(SMS_DEV_REGISTER_STATUS& registerStatus, std::string& userName, std::string& password)
+BOOL HikDeviceRegisterManager::DeviceNonfirstRegister(SMS_DEV_REGISTER_STATUS* registerStatus, std::string& userName, std::string& password)
 {
-	if (registerStatus.userName != userName || registerStatus.password != password)
+	if ((*registerStatus).userName != userName || (*registerStatus).password != password)
 	{
-		cout << "设备：" << registerStatus.id << " 二次注册失败" << std::endl;
+		cout << "设备：" << (*registerStatus).id << " 二次注册失败" << std::endl;
 		return false;
 	}
 
-	registerStatus.registerCount++;
-	cout << "设备：" << registerStatus.id << " 二次注册成功，注册次数为：" << registerStatus.registerCount << std::endl;
+	(*registerStatus).registerCount++;
+	cout << "设备：" << (*registerStatus).id << " 二次注册成功，注册次数为：" << (*registerStatus).registerCount << std::endl;
 	return true;
 }
 
@@ -117,10 +117,11 @@ bool HikDeviceRegisterManager::DeviceUnregister(string devId)
 	map<string, SMS_DEV_REGISTER_STATUS>::iterator iter = deviceLoginMap.find(devId);
 	if (iter == deviceLoginMap.end())
 	{
+		cout << "系统中没有当前设备的登录信息，注销失败" << std::endl;
 		return false;
 	}
 
-	SMS_DEV_REGISTER_STATUS registerStatus = iter->second;
+	SMS_DEV_REGISTER_STATUS* registerStatus = &(iter->second);
 	DeviceUnregister(registerStatus);
 
 	return true;
@@ -131,22 +132,25 @@ bool HikDeviceRegisterManager::DeviceUnregister(LONG loginId)
 	map<string, SMS_DEV_REGISTER_STATUS>::iterator iter = std::find_if(deviceLoginMap.begin(), deviceLoginMap.end(), [loginId](const std::map<string, SMS_DEV_REGISTER_STATUS>::value_type& pair) {return pair.second.loginId == loginId; });
 	if (iter == deviceLoginMap.end())
 	{
+		cout << "系统中没有当前设备的登录信息，注销失败" << std::endl;
 		return false;
 	}
 
-	SMS_DEV_REGISTER_STATUS registerStatus = iter->second;
+	SMS_DEV_REGISTER_STATUS* registerStatus = &(iter->second);
 	DeviceUnregister(registerStatus);
 
 	return true;
 }
 
-void HikDeviceRegisterManager::DeviceUnregister(SMS_DEV_REGISTER_STATUS& registerStatus)
+void HikDeviceRegisterManager::DeviceUnregister(SMS_DEV_REGISTER_STATUS* registerStatus)
 {
-	registerStatus.registerCount--;
-
-	if (registerStatus.registerCount <= 0)
+	(*registerStatus).registerCount--;
+	cout << "设备：" << (*registerStatus).id << " 注销成功，当前注册次数为：" << (*registerStatus).registerCount << std::endl;
+	if ((*registerStatus).registerCount <= 0)
 	{
-		NET_DVR_Logout(registerStatus.loginId);
+		NET_DVR_Logout((*registerStatus).loginId);
+		cout << "设备：" << (*registerStatus).id << " 登出" << std::endl;
+		deviceLoginMap.erase((*registerStatus).id);
 	}
 }
 

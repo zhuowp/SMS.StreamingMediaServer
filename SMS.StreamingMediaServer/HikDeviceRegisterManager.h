@@ -27,8 +27,8 @@ private:
 	void Init();
 	LONG DeviceLogin(std::string& ipAddress, int port, std::string& userName, std::string& password);
 	SMS_DEV_REGISTER_STATUS DeviceFirstRegister(std::string& ipAddress, int port, std::string& userName, std::string& password);
-	BOOL DeviceNonfirstRegister(SMS_DEV_REGISTER_STATUS& registerStatus, std::string& userName, std::string& password);
-	void DeviceUnregister(SMS_DEV_REGISTER_STATUS& registerStatus);
+	BOOL DeviceNonfirstRegister(SMS_DEV_REGISTER_STATUS* registerStatus, std::string& userName, std::string& password);
+	void DeviceUnregister(SMS_DEV_REGISTER_STATUS* registerStatus);
 	void LogoutAllConnections();
 	static VOID CALLBACK OnExceptionCallBack(DWORD dwType, LONG lUserID, LONG lHandle, void* pUser);
 
