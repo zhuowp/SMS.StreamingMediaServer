@@ -2,16 +2,8 @@
 #include <string>
 #include <map>
 #include <Windows.h>
+#include "DeviceCommonDef.h"
 using namespace std;
-
-struct SMS_DEV_REGISTER_STATUS
-{
-	string id;
-	string userName;
-	string password;
-	LONG loginId;
-	int registerCount;
-};
 
 class HikDeviceRegisterManager
 {

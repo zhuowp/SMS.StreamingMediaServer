@@ -179,16 +179,16 @@ enum SMS_FRAME_TYPE_t
 	SMS_FRAME_TYPE_NON_KEY_FRAME = 2		// 非关键帧
 };
 
-enum SMS_LOG_LEVEL_t
-{
-	SMS_LOG_QUIET = 0,	// 不生成日志
-	SMS_LOG_TRACE = 1,	// 生成trace及更高级别的日志
-	SMS_LOG_DEBUG = 2,	// 生成debug及更高级别的日志
-	SMS_LOG_INFO = 3,	// 生成info 及更高级别的日志
-	SMS_LOG_WARN = 4,	// 生成warn 及更高级别的日志
-	SMS_LOG_ERROR = 5,	// 生成error及更高级别的日志
-	SMS_LOG_CRITICAL = 6		// 
-};
+//enum SMS_LOG_LEVEL_t
+//{
+//	SMS_LOG_QUIET = 0,	// 不生成日志
+//	SMS_LOG_TRACE = 1,	// 生成trace及更高级别的日志
+//	SMS_LOG_DEBUG = 2,	// 生成debug及更高级别的日志
+//	SMS_LOG_INFO = 3,	// 生成info 及更高级别的日志
+//	SMS_LOG_WARN = 4,	// 生成warn 及更高级别的日志
+//	SMS_LOG_ERROR = 5,	// 生成error及更高级别的日志
+//	SMS_LOG_CRITICAL = 6		// 
+//};
 
 
 struct SMS_FRAME_INFO_t

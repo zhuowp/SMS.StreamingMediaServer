@@ -27,9 +27,6 @@
     <ClCompile Include="PsAnalyzer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="HikDevice.cpp">
-      <Filter>源文件\Hik</Filter>
-    </ClCompile>
     <ClCompile Include="HikDeviceRegisterManager.cpp">
       <Filter>源文件\Hik</Filter>
     </ClCompile>
@@ -70,6 +67,12 @@
     </ClInclude>
     <ClInclude Include="HikVideoDownloadController.h">
       <Filter>头文件\Hik</Filter>
+    </ClInclude>
+    <ClInclude Include="DeviceCommonDef.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonDef.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

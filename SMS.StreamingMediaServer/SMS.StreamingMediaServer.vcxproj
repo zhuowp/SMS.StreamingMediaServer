@@ -157,7 +157,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="HikDevice.cpp" />
     <ClCompile Include="HikDeviceRegisterManager.cpp" />
     <ClCompile Include="HikPTZController.cpp" />
     <ClCompile Include="HikRealtimePlayController.cpp" />
@@ -167,6 +166,8 @@
     <ClCompile Include="SMS.StreamingMediaServer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CommonDef.h" />
+    <ClInclude Include="DeviceCommonDef.h" />
     <ClInclude Include="HikDevice.h" />
     <ClInclude Include="HikDeviceRegisterManager.h" />
     <ClInclude Include="HikPTZController.h" />

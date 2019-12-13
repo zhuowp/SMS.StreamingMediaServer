@@ -40,18 +40,6 @@ typedef struct tagPlayInstance
 
 }PLAY_INSTANCE, * LPPLAY_INSTANCE;
 
-typedef struct
-{
-	WORD wYear;		//!年
-	WORD wMonth;		//!月
-	WORD wDay;			//!日
-	WORD wHour;		//!时
-	WORD wMinute;		//!分
-	WORD wSecond;		//!秒
-	WORD wZoneTime;	//!时区 如:东八区 wZoneTime = 8 西八区 wZoneTime = -8  
-	WORD wRes;			//!保留
-}STANDARD_TIME, * LPSTANDARD_TIME;
-
 class HikDevice
 {
 public:

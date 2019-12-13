@@ -15,6 +15,34 @@ HikDeviceRegisterManager::~HikDeviceRegisterManager()
 	LogoutAllConnections();
 }
 
+void HikDeviceRegisterManager::Init()
+{
+	if (isInitialized)
+	{
+		return;
+	}
+
+	bool isInitializeSuccess = NET_DVR_Init();
+	if (!isInitializeSuccess)
+	{
+		DWORD erroCode = NET_DVR_GetLastError();
+
+		string output = "HIK NET_DVR_Init Failed ! LastErrorCode = " + std::to_string(erroCode) + "\n";
+		cout << output;
+	}
+
+	//设置连接时间与重连时间
+	NET_DVR_SetConnectTime(2000, 1);
+	NET_DVR_SetReconnect(10000, true);
+
+	//设置异常消息回调函数
+	NET_DVR_SetExceptionCallBack_V30(0, NULL, OnExceptionCallBack, NULL);
+
+	isInitialized = true;
+
+	cout << "HIK NET_DVR_Init Successfully!\n";
+}
+
 LONG HikDeviceRegisterManager::DeviceRegister(string ipAddress, int port, string userName, string password)
 {
 	string devId = ipAddress + "-" + std::to_string(port);
@@ -36,19 +64,6 @@ LONG HikDeviceRegisterManager::DeviceRegister(string ipAddress, int port, string
 			return -1;
 		}
 	}
-}
-
-BOOL HikDeviceRegisterManager::DeviceNonfirstRegister(SMS_DEV_REGISTER_STATUS* registerStatus, std::string& userName, std::string& password)
-{
-	if ((*registerStatus).userName != userName || (*registerStatus).password != password)
-	{
-		cout << "设备：" << (*registerStatus).id << " 二次注册失败" << std::endl;
-		return false;
-	}
-
-	(*registerStatus).registerCount++;
-	cout << "设备：" << (*registerStatus).id << " 二次注册成功，注册次数为：" << (*registerStatus).registerCount << std::endl;
-	return true;
 }
 
 SMS_DEV_REGISTER_STATUS HikDeviceRegisterManager::DeviceFirstRegister(std::string& ipAddress, int port, std::string& userName, std::string& password)
@@ -77,6 +92,19 @@ SMS_DEV_REGISTER_STATUS HikDeviceRegisterManager::DeviceFirstRegister(std::strin
 	}
 
 	return registerStatus;
+}
+
+BOOL HikDeviceRegisterManager::DeviceNonfirstRegister(SMS_DEV_REGISTER_STATUS* registerStatus, std::string& userName, std::string& password)
+{
+	if ((*registerStatus).userName != userName || (*registerStatus).password != password)
+	{
+		cout << "设备：" << (*registerStatus).id << " 二次注册失败" << std::endl;
+		return false;
+	}
+
+	(*registerStatus).registerCount++;
+	cout << "设备：" << (*registerStatus).id << " 二次注册成功，注册次数为：" << (*registerStatus).registerCount << std::endl;
+	return true;
 }
 
 LONG HikDeviceRegisterManager::DeviceLogin(std::string& ipAddress, int port, std::string& userName, std::string& password)
@@ -152,34 +180,6 @@ void HikDeviceRegisterManager::DeviceUnregister(SMS_DEV_REGISTER_STATUS* registe
 		cout << "设备：" << (*registerStatus).id << " 登出" << std::endl;
 		deviceLoginMap.erase((*registerStatus).id);
 	}
-}
-
-void HikDeviceRegisterManager::Init()
-{
-	if (isInitialized)
-	{
-		return;
-	}
-
-	bool isInitializeSuccess = NET_DVR_Init();
-	if (!isInitializeSuccess)
-	{
-		DWORD erroCode = NET_DVR_GetLastError();
-
-		string output = "HIK NET_DVR_Init Failed ! LastErrorCode = " + std::to_string(erroCode) + "\n";
-		cout << output;
-	}
-
-	//设置连接时间与重连时间
-	NET_DVR_SetConnectTime(2000, 1);
-	NET_DVR_SetReconnect(10000, true);
-
-	//设置异常消息回调函数
-	NET_DVR_SetExceptionCallBack_V30(0, NULL, OnExceptionCallBack, NULL);
-
-	isInitialized = true;
-
-	cout << "HIK NET_DVR_Init Successfully!\n";
 }
 
 VOID HikDeviceRegisterManager::OnExceptionCallBack(DWORD dwType, LONG lUserID, LONG lHandle, void* pUser)
