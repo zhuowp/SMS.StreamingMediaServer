@@ -74,5 +74,8 @@
     <ClInclude Include="CommonDef.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="CodecProber.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
