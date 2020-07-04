@@ -3,27 +3,39 @@
 
 #include <iostream>
 #include "HikDeviceRegisterManager.h"
+#include "HikRealtimePlayController.h"
+#include "Test.cpp"
 
 int main()
 {
-	std::cout << "Hello world!\n";
-	HikDeviceRegisterManager hikDevRegisterManager;
-
+	std::cout << "Welcome To Use SMS Streaming Media Server!\n";
+	HikDeviceRegisterManager hikDevRegisterManager = *HikDeviceRegisterManager::GetInstance();
+	HikRealtimePlayController realtimePlayController;
+	int64_t playHandle = -1;
 	while (true)
 	{
-		int input = getchar();
+		string command;
+		getline(cin, command);
 
-		if (input == 'q')
+		if (command == "q")
 		{
 			break;
 		}
-
-		if (input == 'r')
+		else if (command == "start play")
 		{
-			hikDevRegisterManager.DeviceRegister("192.168.28.130", 8000, "admin", "admin888");
+			StartPlay();
+			return 0;
+			LONG loginHandle = hikDevRegisterManager.DeviceRegister("192.168.28.130", 8000, "admin", "admin888");
+
+			playHandle = realtimePlayController.PlayLive(loginHandle, 1, 1);
+		}
+		else if (command == "stop play")
+		{
+			realtimePlayController.StopLive(playHandle);
+			hikDevRegisterManager.DeviceUnregister("192.168.28.130-8000");
 		}
 
-		if (input == 'u')
+		if (command == "u")
 		{
 			hikDevRegisterManager.DeviceUnregister("192.168.28.130-8000");
 		}

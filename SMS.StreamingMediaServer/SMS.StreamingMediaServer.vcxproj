@@ -75,6 +75,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>..\include\hk;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -108,14 +109,14 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\Projects\Gits\SMS.StreamingMediaServer\include\hk;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ConformanceMode>false</ConformanceMode>
+      <AdditionalIncludeDirectories>..\include\hk;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>D:\Projects\Gits\SMS.StreamingMediaServer\lib\hk\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>HCNetSDK.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\lib\hk\x64;..\lib\hk\x64\HCNetSDKCom;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>HCNetSDK.lib;PlayCtrl.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -162,6 +163,8 @@
     <ClCompile Include="HikRealtimePlayController.cpp" />
     <ClCompile Include="HikReplayController.cpp" />
     <ClCompile Include="HikVideoDownloadController.cpp" />
+    <ClCompile Include="NetCameraDevice.cpp" />
+    <ClCompile Include="NetDevice.cpp" />
     <ClCompile Include="PsAnalyzer.cpp" />
     <ClCompile Include="SMS.StreamingMediaServer.cpp" />
   </ItemGroup>
@@ -174,9 +177,12 @@
     <ClInclude Include="HikRealtimePlayController.h" />
     <ClInclude Include="HikReplayController.h" />
     <ClInclude Include="HikVideoDownloadController.h" />
+    <ClInclude Include="NetCameraDevice.h" />
+    <ClInclude Include="NetDevice.h" />
+    <ClInclude Include="Log.h" />
     <ClInclude Include="PsAnalyzer.h" />
     <ClInclude Include="PublicDef.h" />
-    <ClInclude Include="CodecProber.h" />
+    <ClInclude Include="Test.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -4,6 +4,8 @@
 #include <time.h>
 #include <algorithm>
 
+static HikDeviceRegisterManager* _instance;
+
 HikDeviceRegisterManager::HikDeviceRegisterManager()
 {
 	isInitialized = false;
@@ -13,6 +15,16 @@ HikDeviceRegisterManager::HikDeviceRegisterManager()
 HikDeviceRegisterManager::~HikDeviceRegisterManager()
 {
 	LogoutAllConnections();
+}
+
+HikDeviceRegisterManager* HikDeviceRegisterManager::GetInstance()
+{
+	if (_instance == nullptr)
+	{
+		_instance = new HikDeviceRegisterManager();
+	}
+
+	return _instance;
 }
 
 void HikDeviceRegisterManager::Init()
@@ -55,7 +67,7 @@ LONG HikDeviceRegisterManager::DeviceRegister(string ipAddress, int port, string
 	else//已登录，则增加登录次数
 	{
 		SMS_DEV_REGISTER_STATUS* registerStatus = &(iter->second);
-		if (DeviceNonfirstRegister(registerStatus, userName, password))
+		if (DeviceNonFirstRegister(registerStatus, userName, password))
 		{
 			return (*registerStatus).loginId;
 		}
@@ -94,7 +106,7 @@ SMS_DEV_REGISTER_STATUS HikDeviceRegisterManager::DeviceFirstRegister(std::strin
 	return registerStatus;
 }
 
-BOOL HikDeviceRegisterManager::DeviceNonfirstRegister(SMS_DEV_REGISTER_STATUS* registerStatus, std::string& userName, std::string& password)
+BOOL HikDeviceRegisterManager::DeviceNonFirstRegister(SMS_DEV_REGISTER_STATUS* registerStatus, std::string& userName, std::string& password)
 {
 	if ((*registerStatus).userName != userName || (*registerStatus).password != password)
 	{
@@ -182,7 +194,7 @@ void HikDeviceRegisterManager::DeviceUnregister(SMS_DEV_REGISTER_STATUS* registe
 	}
 }
 
-VOID HikDeviceRegisterManager::OnExceptionCallBack(DWORD dwType, LONG lUserID, LONG lHandle, void* pUser)
+void HikDeviceRegisterManager::OnExceptionCallBack(DWORD dwType, LONG lUserID, LONG lHandle, void* pUser)
 {
 	switch (dwType)
 	{

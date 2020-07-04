@@ -19,6 +19,12 @@
     <Filter Include="源文件\Hik">
       <UniqueIdentifier>{277dcac5-2383-46dd-b2e7-f6a998ca0df9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\Common">
+      <UniqueIdentifier>{5c592426-a5bd-4835-8bcf-ddcdcfb23c39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Common">
+      <UniqueIdentifier>{a629328e-5640-45ad-9c96-0ae74f4f657b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SMS.StreamingMediaServer.cpp">
@@ -41,6 +47,12 @@
     </ClCompile>
     <ClCompile Include="HikVideoDownloadController.cpp">
       <Filter>源文件\Hik</Filter>
+    </ClCompile>
+    <ClCompile Include="NetDevice.cpp">
+      <Filter>源文件\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="NetCameraDevice.cpp">
+      <Filter>源文件\Common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -74,8 +86,17 @@
     <ClInclude Include="CommonDef.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="CodecProber.h">
+    <ClInclude Include="Log.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Test.cpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="NetDevice.h">
+      <Filter>头文件\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="NetCameraDevice.h">
+      <Filter>头文件\Common</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
